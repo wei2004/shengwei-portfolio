@@ -243,7 +243,7 @@ h1, h2, h3, .site-name, .award-band a strong { font-family: "Noto Serif TC", "PM
 .hero-statement { font-family: "Noto Serif TC", "PMingLiU", serif; font-size: clamp(1.3rem, 2.5vw, 1.7rem); font-weight: 600; line-height: 1.45; margin-top: 16px; }
 .hero-statement span { display: inline-block; }
 .hero-intro { margin: 24px 0 32px; }
-.hero-side img { width: 232px; aspect-ratio: 4 / 5; object-fit: cover; object-position: center top; border-radius: var(--radius); }
+.hero-side img { display: block; margin: 0 auto; width: 176px; aspect-ratio: 4 / 5; object-fit: cover; object-position: center top; border-radius: var(--radius); }
 .hero-side dl { margin: 12px 0 0; display: grid; gap: 6px; font-size: 0.9rem; }
 .hero-side dl div { display: grid; grid-template-columns: 44px 1fr; gap: 8px; border-top: 1px solid var(--line); padding-top: 6px; }
 .hero-side dt { color: var(--muted); }
@@ -449,7 +449,7 @@ h1, h2, h3, .site-name, .award-band a strong { font-family: "Noto Serif TC", "PM
 @media (max-width: 760px) {
   .hero { padding: 36px 0 40px; }
   .hero-grid { grid-template-columns: 1fr; gap: 28px; }
-  .hero-side { display: grid; grid-template-columns: 120px 1fr; gap: 14px; align-items: start; }
+  .hero-side { display: grid; grid-template-columns: 100px 1fr; gap: 14px; align-items: start; }
   .hero-side img { width: 100%; }
   .hero-side dl { margin: 0; }
   .award-band ol { grid-template-columns: 1fr 1fr; }

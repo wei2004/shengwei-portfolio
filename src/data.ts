@@ -83,7 +83,7 @@ export const profile = {
   seeking: "關注商業分析、產品、行銷與 AI 科技。",
   education: "國立臺北科技大學・經營管理系",
   educationPeriod: "2023 入學，預計 2027 畢業",
-  gpa: "GPA 3.8",
+  gpa: "GPA 3.8 / 4.0",
   learning: "科技法律學程修習中",
   about: [
     "我從經營管理出發，延伸到資訊系統、AI 應用與科技法律。在會計師事務所練出對數字的耐心：每一筆都要對得上。",
@@ -586,7 +586,7 @@ export const timelineRows: { label: string; note: string; from?: string; to?: st
   ] },
 ];
 
-/** From the transcript printed 2026.09.24. Excludes the 2-credit summer internship and 0-credit courses. */
+/** From the transcript printed 2026.09.24, plus the 2-credit off-campus internship. Excludes 0-credit courses. */
 export const creditMix: { area: string; credits: number }[] = [
   { area: "數據、資訊與 AI", credits: 32 },
   { area: "會計、財務與經濟", credits: 27 },
@@ -594,6 +594,7 @@ export const creditMix: { area: string; credits: number }[] = [
   { area: "科技法律", credits: 21 },
   { area: "語言", credits: 12 },
   { area: "通識與其他", credits: 12 },
+  { area: "校外實習", credits: 2 },
 ];
 
 export const semesterAverages: { term: string; average: number }[] = [

@@ -16,7 +16,7 @@ export function WorkPage() {
       </header>
       <div className="work-filter" role="group" aria-label="依分類篩選作品">
         {(["全部", ...categories] as const).map(c => (
-          <button key={c} type="button" aria-pressed={c === filter} onClick={() => setFilter(c)}>{c}</button>
+          <button key={c} type="button" aria-pressed={c === filter} onClick={() => setFilter(c)}>{c}<span className="filter-count">{c === "全部" ? allWorks.length : allWorks.filter(p => p.category === c).length}</span></button>
         ))}
       </div>
       <h2 className="visually-hidden">作品列表</h2>

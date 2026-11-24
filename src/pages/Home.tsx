@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 import { byId, experience, featuredWorks, flow, homeRecord, isStatusLabel, isTopAward, profile, stats, upcoming } from "../data";
 import type { Project } from "../data";
-import { InternalLink } from "../components/Icons";
+import { FactIcon, InternalLink } from "../components/Icons";
 
 function Hero() {
   return (
@@ -20,10 +20,10 @@ function Hero() {
         <aside className="hero-side">
           <img src={profile.portrait.src} alt={profile.portrait.alt} width={profile.portrait.width} height={profile.portrait.height} fetchPriority="high" />
           <dl>
-            <div><dt>就讀</dt><dd>北科經營管理系大四</dd></div>
-            <div><dt>工作</dt><dd>國大會計師事務所工讀與實習</dd></div>
-            <div><dt>方向</dt><dd>商業分析、產品、行銷、AI 科技</dd></div>
-            <div><dt>學程</dt><dd>科技法律學程（修習中）</dd></div>
+            <div><dt><FactIcon kind="school" />就讀</dt><dd>北科經營管理系大四</dd></div>
+            <div><dt><FactIcon kind="work" />工作</dt><dd>國大會計師事務所工讀與實習</dd></div>
+            <div><dt><FactIcon kind="aim" />方向</dt><dd>商業分析、產品、行銷、AI 科技</dd></div>
+            <div><dt><FactIcon kind="law" />學程</dt><dd>科技法律學程（修習中）</dd></div>
           </dl>
         </aside>
       </div>
@@ -79,7 +79,7 @@ export function WorkCard({ project: p, eager, showRole = true }: { project: Proj
         <span className="work-awards">{awards.map(a => <span className={"award" + (isStatusLabel(a) ? " award-status" : "")} key={a}>{a}</span>)}</span>
         <h3>{p.title}</h3>
         <p>{p.tagline}</p>
-        {showRole && <p className="work-role"><span>我負責</span>{p.roleTags.join("・")}</p>}
+        {showRole && <p className="work-role"><span>我負責</span>{p.roleTags.slice(0, 3).map(t => <em className="role-tag" key={t}>{t}</em>)}</p>}
         <InternalLink href={"/projects/" + p.id}>看完整案例</InternalLink>
       </div>
     </article>
@@ -94,7 +94,7 @@ function Work() {
         <h2 id="work-title">我實際做了什麼</h2>
         <p>獎項都是團隊成果。</p>
       </header>
-      <div className="work-grid">{featuredWorks().map(p => <WorkCard key={p.id} project={p} showRole={false} />)}</div>
+      <div className="work-grid">{featuredWorks().map(p => <WorkCard key={p.id} project={p} />)}</div>
       <div className="work-all"><InternalLink href="/work">看全部作品</InternalLink></div>
     </section>
   );

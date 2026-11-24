@@ -1,7 +1,8 @@
+import { useState } from "react";
 import { isStatusLabel, projects } from "../data";
-import type { Embed, Project } from "../data";
+import type { Embed, Figure, Project } from "../data";
 import { Gallery, Shot } from "../components/Gallery";
-import { ExternalLink } from "../components/Icons";
+import { ExternalLink, RuleIcon } from "../components/Icons";
 
 const siblings: Partial<Record<Project["id"], Project["id"]>> = {
   "tapable-buildmode": "tapable-line",
@@ -17,6 +18,50 @@ function Embeds({ items }: { items: Embed[] }) {
         </div>
       ))}
     </div>
+  );
+}
+
+/** Two lanes (AI above, me below); picking a step shows its screen underneath. */
+function FlowLanes({ project }: { project: Project }) {
+  const flow = project.flow!;
+  const figures = [project.cover, ...project.gallery];
+  const shotOf = (src?: string): Figure | undefined => (src ? figures.find(f => f.src.endsWith("/" + src)) : undefined);
+  const [picked, setPicked] = useState(0);
+  const shot = shotOf(flow[picked].shot);
+  const clickable = flow.some(s => s.shot);
+  return (
+    <>
+      <div className="lanes">
+        <p className="lane-label lane-label-ai" aria-hidden="true">AI 處理</p>
+        <p className="lane-label lane-label-me" aria-hidden="true">我決定</p>
+        <ol>
+          {flow.map((s, i) => {
+            const body = (
+              <>
+                <em>{s.lane === "me" ? "我" : s.lane === "both" ? "我＋AI" : "AI"}</em>
+                <span aria-hidden="true">{i + 1}</span>
+                <strong>{s.title}</strong>
+                <p>{s.detail}</p>
+              </>
+            );
+            const cls = ["lane-" + (s.lane ?? "ai"), s.key ? "is-key" : "", clickable && i === picked ? "is-picked" : ""].join(" ").replace(/\s+/g, " ").trim();
+            return (
+              <li key={s.title} className={cls} style={{ gridColumn: i + 2 }}>
+                {s.shot ? (
+                  <button type="button" aria-pressed={i === picked} aria-controls="flow-shot" onClick={() => setPicked(i)}>{body}</button>
+                ) : body}
+              </li>
+            );
+          })}
+        </ol>
+      </div>
+      {shot && (
+        <div className="flow-shot" id="flow-shot" aria-live="polite">
+          <p className="hint">點上面的步驟，看對應的畫面。</p>
+          <Gallery key={shot.src} figures={[shot]} />
+        </div>
+      )}
+    </>
   );
 }
 
@@ -102,19 +147,23 @@ export function CasePage({ project }: { project: Project }) {
           <p>{project.approach}</p>
           {project.flow ? (
             <>
-              <ol className="stepper">
-                {project.flow.map((s, i) => (
-                  <li key={s.title} className={s.key ? "is-key" : undefined}>
-                    <span aria-hidden="true">{i + 1}</span>
-                    <strong>{s.title}</strong>
-                    <p>{s.detail}</p>
-                  </li>
-                ))}
-              </ol>
+              {project.flow.some(s => s.lane) ? (
+                <FlowLanes project={project} />
+              ) : (
+                <ol className="stepper">
+                  {project.flow.map((s, i) => (
+                    <li key={s.title} className={s.key ? "is-key" : undefined}>
+                      <span aria-hidden="true">{i + 1}</span>
+                      <strong>{s.title}</strong>
+                      <p>{s.detail}</p>
+                    </li>
+                  ))}
+                </ol>
+              )}
               <div className="flow-rules">
                 <h3>三條防呆規則</h3>
                 <ul>
-                  {project.flow.flatMap(s => (s.rules ?? []).map(r => <li key={r}><span>{s.title}</span>{r}</li>))}
+                  {project.flow.flatMap(s => (s.rules ?? []).map(r => <li key={r} className={s.ruleIcon ? "has-icon" : undefined}>{s.ruleIcon && <RuleIcon kind={s.ruleIcon} />}<span>{s.title}</span>{r}</li>))}
                 </ul>
               </div>
             </>
@@ -131,7 +180,7 @@ export function CasePage({ project }: { project: Project }) {
           )}
         </section>
 
-        {project.gallery.length > 0 && (
+        {project.gallery.length > 0 && !project.gallery.every(f => project.flow?.some(s => s.shot && f.src.endsWith("/" + s.shot))) && (
           <section className="case-section" aria-labelledby="gallery-title">
             <h2 id="gallery-title">作品畫面</h2>
             <div><Gallery figures={project.gallery} /></div>

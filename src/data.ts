@@ -46,8 +46,9 @@ export interface Project {
   steps: { title: string; detail: string }[];
   /** Two to four headline figures, shown at the top of the case page. */
   metrics?: { value: string; label: string }[];
-  /** A longer flow shown instead of `steps`. `key` marks the step that matters most. */
-  flow?: { title: string; detail: string; key?: boolean; rules?: string[] }[];
+  /** A longer flow shown instead of `steps`. `key` marks the step that matters most; `lane` says who does it;
+   *  `shot` is the image (cover or gallery, by path under /images/work/) shown when the step is picked. */
+  flow?: { title: string; detail: string; key?: boolean; rules?: string[]; lane?: "ai" | "me" | "both"; shot?: string; ruleIcon?: "lock" | "person" | "once" }[];
   contributions: string[];
   outcome: string;
   scope: string;
@@ -160,11 +161,11 @@ export const projects: Project[] = [
       { title: "親自投遞與追蹤", detail: "我看過內容後親自到平台送出，再記錄後續進度。" },
     ],
     flow: [
-      { title: "找到", detail: "搜尋仍開放的公開職缺，保留來源。", rules: ["不登入、不操作求職平台"] },
-      { title: "評分", detail: "依履歷評估適配度，寫出原因。" },
-      { title: "準備", detail: "對照履歷產生應徵內容，沒做過的不寫。" },
-      { title: "我親自投遞", detail: "看過內容後，由我到平台送出。", key: true, rules: ["投遞由本人親自送出"] },
-      { title: "追蹤", detail: "記錄面試與結果，久未更新會提醒。", rules: ["同一職缺不重複投遞"] },
+      { title: "找到", detail: "搜尋仍開放的公開職缺，保留來源。", lane: "ai", shot: "agent/job-desk.jpg", ruleIcon: "lock", rules: ["不登入、不操作求職平台"] },
+      { title: "評分", detail: "依履歷評估適配度，寫出原因。", lane: "ai", shot: "agent/today-list.jpg" },
+      { title: "準備", detail: "對照履歷產生應徵內容，沒做過的不寫。", lane: "ai", shot: "agent/fit-evidence.jpg" },
+      { title: "我親自投遞", detail: "看過內容後，由我到平台送出。", key: true, lane: "me", shot: "agent/today-list.jpg", ruleIcon: "person", rules: ["投遞由本人親自送出"] },
+      { title: "追蹤", detail: "我記錄面試與結果，工作台在久未更新時提醒。", lane: "both", shot: "agent/tracker.jpg", ruleIcon: "once", rules: ["同一職缺不重複投遞"] },
     ],
     contributions: [
       "規劃需求與流程：定義每一步要留下什麼依據，以及哪些情況必須停下來。",

@@ -222,7 +222,7 @@ button { font: inherit; cursor: pointer; }
 .sheet-split div > h2:not(:first-child) { margin-top: 8px; }
 
 /* Typography and rules applied across the site */
-h1, h2, h3, .site-name, .award-band a strong { font-family: "Noto Serif TC", "PMingLiU", serif; font-weight: 900; }
+h1, h2, h3, .site-name, .award-band :is(a, .band-item) strong { font-family: "Noto Serif TC", "PMingLiU", serif; font-weight: 900; }
 .site-header { border-bottom: 2px solid var(--ink); }
 .site-header nav a { border-radius: 0; }
 .site-header nav a[aria-current="page"] { background: none; color: var(--accent); box-shadow: inset 0 -2px var(--accent); }
@@ -257,12 +257,12 @@ h1, h2, h3, .site-name, .award-band a strong { font-family: "Noto Serif TC", "PM
 .award-band ol { list-style: none; display: grid; grid-template-columns: repeat(5, 1fr); }
 .award-band li { border-left: 1px solid rgb(255 255 255 / 18%); padding: 2px 14px; }
 .award-band li:first-child { border-left: 0; padding-left: 0; }
-.award-band a { display: grid; gap: 2px; text-decoration: none; }
+.award-band :is(a, .band-item) { display: grid; gap: 2px; text-decoration: none; }
 .band-upcoming { margin-top: 22px; padding-top: 14px; border-top: 1px solid rgb(255 255 255 / 18%); color: var(--on-navy-muted); font-size: 0.92rem; }
 .band-upcoming strong { color: var(--on-navy); margin-right: 12px; }
-.award-band a strong { font-size: 1.02rem; line-height: 1.35; }
-.award-band a span { margin-top: 6px; font-size: 0.9rem; }
-.award-band a small { color: var(--on-navy-muted); font-size: 0.9rem; }
+.award-band :is(a, .band-item) strong { font-size: 1.02rem; line-height: 1.35; }
+.award-band :is(a, .band-item) span { margin-top: 6px; font-size: 0.9rem; }
+.award-band :is(a, .band-item) small { color: var(--on-navy-muted); font-size: 0.9rem; }
 .award-band a:hover span { text-decoration: underline; }
 
 .award-band .band-timeline { position: relative; padding: 0; grid-template-columns: repeat(var(--n), 1fr); margin-top: 26px; }
@@ -301,8 +301,8 @@ h1, h2, h3, .site-name, .award-band a strong { font-family: "Noto Serif TC", "PM
 .record-table td { vertical-align: middle; padding: 12px 14px; border-bottom: 1px solid var(--line); font-size: 0.93rem; color: var(--ink-2); }
 .record-table tr.is-first td { background: var(--accent-soft); }
 .record-work { display: flex; align-items: center; gap: 14px; }
-.record-work img { width: 96px; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 10px; flex: none; background: var(--tint); }
-.record-work a { display: block; font-weight: 700; color: var(--ink); text-decoration: none; }
+.record-work img, .record-noimg { width: 96px; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 10px; flex: none; background: var(--tint); }
+.record-work :is(a, strong) { display: block; font-weight: 700; color: var(--ink); text-decoration: none; }
 .record-work a:hover { color: var(--accent); }
 .record-work span { color: var(--muted); font-size: 0.9rem; }
 .record-table .tag { margin: 0 0 4px; font-size: 0.9rem; }

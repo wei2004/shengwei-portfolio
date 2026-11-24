@@ -37,7 +37,7 @@ export function Resume() {
               <time>{item.date}</time>
               <div>
                 <p><strong>{item.event}</strong>{item.host && "（" + item.host + "）"}<span className="award">{item.result}</span>{item.scale && <span className="sheet-scale">{item.scale}</span>}</p>
-                <p className="sheet-role">作品：{item.work}｜我負責：{item.role}</p>
+                <p className="sheet-role">作品：{item.work}{item.role && "｜我負責：" + item.role}</p>
               </div>
             </div>
           ))}

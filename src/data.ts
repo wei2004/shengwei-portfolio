@@ -1,6 +1,6 @@
 // All site text lives here. It follows content/網站公開版內容包.md — change both together.
 
-export type ProjectId = "job-agent" | "cockpit" | "tapable-line" | "tapable-buildmode" | "cardif" | "brand" | "sor";
+export type ProjectId = "job-agent" | "hotai" | "cockpit" | "tapable-line" | "tapable-buildmode" | "cardif" | "brand" | "sor";
 
 export interface Figure {
   src: string;
@@ -182,6 +182,46 @@ export const projects: Project[] = [
     ],
   },
   {
+    id: "hotai",
+    category: "AI 黑客松",
+    featured: true,
+    title: "yoxi 陪出門",
+    tagline: "讓外籍看護自己帶長輩去回診，家屬不用再當遠端調度員。",
+    kind: "AI 服務設計・產品原型・商業模式",
+    event: "2026 和泰 AI 黑客松",
+    host: "和泰集團・yoxi 命題",
+    date: "2026.11.21",
+    team: "Jalan Bareng（5 人）",
+    awards: ["季軍"],
+    roleTags: ["原型迭代", "Demo", "決賽簡報"],
+    summary: "聘僱外籍看護的家庭，陪長輩回診的是看護，叫車、看懂回診單、付款和安排回程卻常常還是靠上班中的家屬遠端處理。團隊設計由家屬付費、看護操作的回診接送服務：確認一次、交辦整趟、異常才找家屬。",
+    problem: "一趟回診卡在三個環節：回診單是中文，看護不容易看懂；家屬希望看護自己叫車，又不放心付款權限；看診結束時間不固定，回程還是要家屬幫忙叫車。",
+    approach: "團隊訪談家庭雇主與外籍看護，確認三個痛點後，定下產品方向：讓家屬能放心授權，讓看護能自主完成接送。和用 LINE 傳訊息的差別是：LINE 只能告訴家屬「我需要你處理」，這個服務讓家屬看到「事情已經處理好」。",
+    steps: [
+      { title: "出發前：行程準備", detail: "看護拍下回診單，AI 整理成看得懂的行程。" },
+      { title: "行程中：授權搭乘", detail: "家屬設定額度與期間，看護在授權範圍內自己叫車。" },
+      { title: "回程後：安全確認", detail: "上車、抵達都會同步，家屬即時收到通知。" },
+    ],
+    contributions: [
+      "在團隊原型上新增家屬授權、行程狀態同步與接送紀錄，並部署成線上版，讓評審在決賽現場用手機體驗完整流程。",
+      "參與家庭訪談、痛點歸納與商業模式設計。",
+      "依業師回饋修訂決賽簡報：重整敘事，補上「為什麼不用 LINE 就好」的論述。",
+      "準備評審問答，並在決賽現場答詢。",
+    ],
+    outcome: "2026 年 11 月 21 日決賽，團隊獲季軍（團隊成果），並完成可操作的產品原型與線上版 Demo：從拍單、授權、叫車到平安到家。",
+    scope: "依競賽規範，命題方提供的數據不公開；Demo、產品畫面與商業模式細節也不放在這裡。簡報中的語音輸入是規劃中的功能，原型沒有實作。",
+    cover: img("hotai/award.jpg", 1477, 1108, "Jalan Bareng 團隊於 2026 和泰 AI 黑客松決賽持季軍獎牌合照", "頒獎合照：季軍"),
+    gallery: [
+      img("hotai/opening.jpg", 1600, 900, "簡報頁：為什麼不是你搭車，卻還是你在叫車？外籍看護家庭的接送協作難題", "開場：外籍看護家庭的接送難題"),
+      img("hotai/problem.jpg", 1600, 900, "簡報頁：家庭接送卡在語言理解、授權付款、時間協調三個環節", "問題：家庭接送卡在三個環節"),
+      img("hotai/solution.jpg", 1600, 900, "簡報頁：yoxi 陪出門的行程準備、授權搭乘、安全確認三階段", "解法：出發前、行程中、回程後三階段"),
+      img("hotai/why-not-line.jpg", 1600, 900, "簡報頁：為什麼不用 LINE 就好？比較現在用 LINE 與 yoxi 陪出門", "為什麼不用 LINE 就好：讓家屬看到事情已經處理好"),
+      img("hotai/badge.jpg", 1108, 1477, "2026 和泰 AI 黑客松決賽識別證，團隊名稱 Jalan Bareng，含洪聖崴的參賽者證", "決賽現場與我的參賽識別證"),
+      img("hotai/stage.jpg", 1108, 1477, "2026 和泰 AI 黑客松頒獎台上，團隊領取季軍", "頒獎台上"),
+      img("hotai/finalists.jpg", 800, 600, "2026 和泰 AI 黑客松得獎隊伍與評審大合照", "得獎隊伍與評審大合照"),
+    ],
+  },
+  {
     id: "cockpit",
     category: "AI 黑客松",
     featured: true,
@@ -324,7 +364,7 @@ export const projects: Project[] = [
   {
     id: "tapable-line",
     category: "AI 黑客松",
-    featured: true,
+    featured: false,
     title: "TapAble｜LINE AI",
     tagline: "從校園原型，走向第一個真實的餐飲場域。",
     kind: "無障礙服務・商業模式・簡報",
@@ -441,23 +481,23 @@ export const isStatusLabel = (label: string) => label === "持續開發中" || l
 
 export const isTopAward = (award: string) => award.includes("第一名") || award.includes("金獎");
 
-const competitionCategories: Category[] = ["商業競賽", "AI 黑客松"];
 const newestFirst = (a: Project, b: Project) => b.date.localeCompare(a.date);
-const competitions = projects.filter(p => competitionCategories.includes(p.category)).sort(newestFirst);
 
 export const allWorks = [...projects].sort((a, b) => Number(!!b.pinned) - Number(!!a.pinned) || newestFirst(a, b));
 
 /** Home page cards: featured works only, pinned first, at most six. */
 export const featuredWorks = (limit = 6) => allWorks.filter(p => p.featured).slice(0, limit);
 
-export const competitionStats = {
-  competitions: competitions.length,
-  awards: competitions.reduce((sum, p) => sum + p.awards.length, 0),
-  firstPlaces: competitions.flatMap(p => p.awards).filter(isTopAward).length,
-};
+
+/** An award row. `id` and `href` are left out when the award has no case page yet; then `category` is required. */
+export interface RecordRow { id?: ProjectId; category?: Category; date: string; event: string; host?: string; work: string; result: string; scale?: string; role: string; href?: string; cover?: Figure }
+
+const hsinchu: RecordRow = { category: "商業競賽", date: "2026.11.20", event: "青春靚點子全國學生創業挑戰賽", host: "新竹縣政府 × 數位時代", work: "TapAble", result: "第三名", role: "" };
 
 /** The resume list: one row per event. The home page uses `homeRecord`. */
-export const competitionRecord: { date: string; event: string; host?: string; work: string; result: string; scale?: string; role: string; href: string }[] = [
+export const competitionRecord: RecordRow[] = [
+  { date: "2026.11.21", event: "和泰 AI 黑客松", host: "和泰集團・yoxi 命題", work: "yoxi 陪出門", result: "季軍", role: "原型迭代、Demo、決賽簡報", href: "/projects/hotai" },
+  hsinchu,
   { date: "2026.10.20", event: "AI 座艙感知與視覺化 Hackathon", host: "資策會數轉院 × 友達智慧移動 × 4SA 聯盟", work: "共創世界窗／警示找眼睛", result: "創意組金獎／實作組潛力新星獎", role: "Demo 製作與實測、簡報、影片、評審 QA", href: "/projects/cockpit" },
   { date: "2026.10.16", event: "LINE AI 創新創業競賽", work: "TapAble", result: "第三名", role: "簡報優化、影片拍攝、評審 QA", href: "/projects/tapable-line" },
   { date: "2026.09.04–06", event: "BUILDMODE 2026 Hackathon", host: "台灣未來祭 OnboardFUTUREMODE", work: "TapAble", result: "第二名", scale: "160 隊", role: "產品測試、修改建議、Demo 準備", href: "/projects/tapable-buildmode" },
@@ -465,8 +505,9 @@ export const competitionRecord: { date: string; event: string; host?: string; wo
   { date: "2026.01.25", event: "Cardif InsurHack 法國巴黎人壽校園黑客松", work: "保包巴士", result: "銀獎", scale: "全台 50 校、450+ 位學生", role: "經濟模型報告、評審 QA、講稿與簡報", href: "/projects/cardif" },
 ];
 
-/** The home page record table: one row per award, so an event with two works takes two rows. */
-export const homeRecord: { id: ProjectId; date: string; event: string; host?: string; work: string; result: string; scale?: string; role: string; href: string; cover?: Figure }[] = [
+/** The home page record table, the full list of awards: one row per award, so an event with two works takes two rows. */
+export const homeRecord: RecordRow[] = [
+  { id: "hotai", date: "2026.11.21", event: "和泰 AI 黑客松", host: "和泰集團・yoxi 命題", work: "yoxi 陪出門", result: "季軍", role: "原型迭代、Demo、決賽簡報", href: "/projects/hotai" },
   { id: "cockpit", date: "2026.10.20", event: "AI 座艙感知與視覺化 Hackathon", host: "資策會數轉院 × 友達智慧移動 × 4SA 聯盟", work: "共創世界窗", result: "創意組金獎", role: "離線 Demo 製作、簡報支援、評審 QA", href: "/projects/cockpit" },
   { id: "cockpit", date: "2026.10.20", event: "AI 座艙感知與視覺化 Hackathon", host: "資策會數轉院 × 友達智慧移動 × 4SA 聯盟", work: "警示找眼睛", result: "實作組潛力新星獎", role: "Demo 實測與修改、修改決賽簡報、拍攝作品影片、評審 QA", href: "/projects/cockpit#companion", cover: byId("cockpit").companion!.gallery[0] },
   { id: "tapable-line", date: "2026.10.16", event: "LINE AI 創新創業競賽", work: "TapAble", result: "第三名", role: "簡報優化、影片拍攝、評審 QA", href: "/projects/tapable-line" },
@@ -478,14 +519,27 @@ export const homeRecord: { id: ProjectId; date: string; event: string; host?: st
 const accountingStart = Date.UTC(2024, 6);
 const accountingYears = Math.floor((Date.now() - accountingStart) / (365.25 * 24 * 60 * 60 * 1000));
 
+/** Awards left out of the home table until there is a photo; they still count. */
+const awardsWithoutPhoto: RecordRow[] = [hsinchu];
+const allAwards = [...homeRecord, ...awardsWithoutPhoto];
+
+/** Counted from every award, so awards without a case page or photo count too. */
+export const competitionStats = {
+  competitions: new Set(allAwards.map(r => r.event)).size,
+  awards: allAwards.length,
+  firstPlaces: allAwards.filter(r => isTopAward(r.result)).length,
+};
+
 export const stats = [
   { value: String(competitionStats.competitions), label: "場商業與 AI 競賽" },
   { value: String(competitionStats.awards), label: "項團隊獎" },
   { value: String(competitionStats.firstPlaces), label: "個第一名（團隊）" },
 ];
 
-/** The award band, newest first. */
-export const flow: { id: ProjectId; short: string }[] = [
+/** The award band, newest first. An entry without `id` has no case page and carries its own award. */
+export const flow: { id?: ProjectId; short: string; date?: string; title?: string; awards?: string[] }[] = [
+  { id: "hotai", short: "和泰 AI 黑客松" },
+  { short: "青春靚點子創業挑戰賽", date: hsinchu.date, title: hsinchu.work, awards: [hsinchu.result] },
   { id: "cockpit", short: "AI 座艙 Hackathon" },
   { id: "tapable-line", short: "LINE AI" },
   { id: "tapable-buildmode", short: "BUILDMODE" },
@@ -495,8 +549,7 @@ export const flow: { id: ProjectId; short: string }[] = [
 
 /** Competitions registered but not finished. Fill in only what the owner has confirmed can be public. */
 export const upcoming: { name: string; short: string; host: string; stage: string; date: string }[] = [
-  { name: "青春靚點子全國學生創業挑戰賽（第五屆）", short: "青春靚點子創業挑戰賽", host: "新竹縣政府 × 數位時代", stage: "入圍決賽", date: "2026.11.20 決賽" },
-  { name: "和泰 AI 黑客松 2026", short: "和泰 AI 黑客松", host: "和泰集團", stage: "決賽 15 強", date: "2026.11.21 決賽" },
+  { name: "AI 企業創新實戰營 2026", short: "AI 企業創新實戰營", host: "國泰健康管理命題", stage: "國泰健康管理命題・已交提案", date: "結果待公告" },
   { name: "第四屆法國巴黎人壽校園黑客松", short: "法巴校園黑客松第四屆", host: "法國巴黎人壽", stage: "參賽中・擔任組長", date: "結果待公告" },
 ];
 
@@ -577,12 +630,14 @@ export const timelineRows: { label: string; note: string; from?: string; to?: st
   { label: "國科會計畫", note: "2025.08–2026.07", from: "2025.8", to: "2026.7" },
   { label: "S-O-R 專題", note: "完成於 2026.06", from: "2025.9", to: "2026.6" },
   { label: "求職 Agent", note: "2026.10 起", from: "2026.10" },
-  { label: "競賽", note: "2026 五場", points: [
+  { label: "競賽", note: "2026 七場", points: [
     { date: "2026.1.25", title: "保包巴士・銀獎" },
     { date: "2026.5.29", title: "消波檜・第一名", top: true },
     { date: "2026.9.4", title: "TapAble｜BUILDMODE・第二名" },
     { date: "2026.10.16", title: "TapAble｜LINE AI・第三名" },
     { date: "2026.10.20", title: "共創世界窗・創意組金獎", top: true },
+    { date: "2026.11.20", title: "TapAble｜青春靚點子・第三名" },
+    { date: "2026.11.21", title: "yoxi 陪出門｜和泰 AI 黑客松・季軍" },
   ] },
 ];
 

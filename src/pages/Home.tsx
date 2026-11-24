@@ -42,15 +42,19 @@ function AwardBand() {
         </header>
         <ol className="band-timeline" style={{ "--n": flow.length } as CSSProperties}>
           {[...flow].reverse().map(f => {
-            const p = byId(f.id);
+            const p = f.id ? byId(f.id) : undefined;
+            const awards = p?.awards ?? f.awards ?? [];
+            const body = (
+              <>
+                <time>{p?.date ?? f.date}</time>
+                {awards.map(a => <strong key={a}>{a}</strong>)}
+                <span>{p?.title ?? f.title}</span>
+                <small>{f.short}</small>
+              </>
+            );
             return (
-              <li key={f.id} className={p.awards.some(isTopAward) ? "is-first" : undefined}>
-                <a href={"/projects/" + p.id}>
-                  <time>{p.date}</time>
-                  {p.awards.map(a => <strong key={a}>{a}</strong>)}
-                  <span>{p.title}</span>
-                  <small>{f.short}</small>
-                </a>
+              <li key={f.short} className={awards.some(isTopAward) ? "is-first" : undefined}>
+                {p ? <a href={"/projects/" + p.id}>{body}</a> : <div className="band-item">{body}</div>}
               </li>
             );
           })}
@@ -110,18 +114,18 @@ function RecordTable() {
         </thead>
         <tbody>
           {homeRecord.map(r => {
-            const p = byId(r.id);
-            const cover = r.cover ?? p.cover;
+            const p = r.id ? byId(r.id) : undefined;
+            const cover = r.cover ?? p?.cover;
             const first = isTopAward(r.result);
             return (
               <tr key={r.work + r.date} className={first ? "is-first" : undefined}>
                 <td>
                   <div className="record-work">
-                    <img src={cover.src} alt="" width={cover.width} height={cover.height} loading="lazy" decoding="async" />
-                    <div><a href={r.href}>{r.event}</a>{r.host && <span>{r.host}</span>}<span className="record-entry">作品：{r.work}</span></div>
+                    {cover ? <img src={cover.src} alt="" width={cover.width} height={cover.height} loading="lazy" decoding="async" /> : <i className="record-noimg" aria-hidden="true" />}
+                    <div>{r.href ? <a href={r.href}>{r.event}</a> : <strong>{r.event}</strong>}{r.host && <span>{r.host}</span>}<span className="record-entry">作品：{r.work}</span></div>
                   </div>
                 </td>
-                <td><span className="tag">{p.category}</span><span className="record-date">{r.date}</span></td>
+                <td><span className="tag">{p?.category ?? r.category}</span><span className="record-date">{r.date}</span></td>
                 <td><span className={"award" + (first ? " award-solid" : "")}>{r.result}</span>{r.scale && <span className="record-scale">{r.scale}</span>}</td>
                 <td>{r.role}</td>
               </tr>

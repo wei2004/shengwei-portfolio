@@ -1,4 +1,4 @@
-import { certifications, competitionRecord, coreAbilities, courses, experience, profile, resumeCertifications, tools, upcoming } from "../data";
+import { certifications, competitionRecord, coreAbilities, courses, experience, profile, resumeCertifications, tools } from "../data";
 
 /** One A4 page; the same markup prints to the downloadable PDF. */
 export function Resume() {
@@ -41,12 +41,6 @@ export function Resume() {
               </div>
             </div>
           ))}
-          {upcoming.length > 0 && (
-            <div className="sheet-row">
-              <time>進行中</time>
-              <div><p className="sheet-role">{upcoming.map(u => u.short + "（" + u.stage.replace("參賽中・", "") + "）").join("、")}</p></div>
-            </div>
-          )}
         </section>
 
         <section>

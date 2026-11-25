@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { isStatusLabel, projects } from "../data";
+import { homeRecord, isStatusLabel, projects } from "../data";
 import type { Embed, Figure, Project } from "../data";
 import { Gallery, Shot } from "../components/Gallery";
 import { ExternalLink, RuleIcon } from "../components/Icons";
@@ -81,6 +81,9 @@ export function CasePage({ project }: { project: Project }) {
   const next = projects[(index + 1) % projects.length];
   const siblingId = siblings[project.id];
   const sibling = siblingId ? projects.find(p => p.id === siblingId) : null;
+  // Field size from the record table; skipped when a headline figure already shows it.
+  const recordScale = homeRecord.find(r => r.id === project.id && r.scale)?.scale;
+  const scale = project.metrics?.some(m => m.value === recordScale) ? undefined : recordScale;
 
   return (
     <article className="case">
@@ -99,6 +102,7 @@ export function CasePage({ project }: { project: Project }) {
           <dl className="case-facts">
             <div><dt>{project.category === "個人專案" || project.category === "研究專題" ? "類型" : "競賽"}</dt><dd>{project.event}{project.host && <small className="case-host">{project.host}</small>}</dd></div>
             <div><dt>時間</dt><dd>{project.date}</dd></div>
+            {scale && <div><dt>參賽規模</dt><dd>{scale}</dd></div>}
             {project.team && <div><dt>團隊</dt><dd>{project.team}</dd></div>}
             <div><dt>{project.solo ? "狀態" : "團隊成果"}</dt><dd>{project.awards.map(a => <span className={"award" + (isStatusLabel(a) ? " award-status" : "")} key={a}>{a}</span>)}</dd></div>
           </dl>

@@ -47,9 +47,9 @@ function AwardBand() {
             const body = (
               <>
                 <time>{p?.date ?? f.date}</time>
+                <span className="band-event">{f.short}</span>
                 {awards.map(a => <strong key={a}>{a}</strong>)}
-                <span>{p?.title ?? f.title}</span>
-                <small>{f.short}</small>
+                <small>{p?.title ?? f.title}</small>
               </>
             );
             return (
@@ -70,12 +70,15 @@ function AwardBand() {
 export function WorkCard({ project: p, eager, showRole = true }: { project: Project; eager?: boolean; showRole?: boolean }) {
   const cover = p.cover;
   const awards = p.awards.filter(a => a !== p.companion?.award);
+  // Event first, then the result, then the work: a reader should know which competition before the work name.
+  const event = p.category === "個人專案" || p.category === "研究專題" ? p.category : homeRecord.find(r => r.id === p.id)?.event ?? p.event;
   return (
     <article>
       <a className="work-cover" href={"/projects/" + p.id} tabIndex={-1} aria-hidden="true">
         <img src={cover.src} alt="" width={cover.width} height={cover.height} loading={eager ? "eager" : "lazy"} decoding="async" />
       </a>
       <div>
+        <p className="work-event">{event}</p>
         <span className="work-awards">{awards.map(a => <span className={"award" + (isStatusLabel(a) ? " award-status" : "")} key={a}>{a}</span>)}</span>
         <h3>{p.title}</h3>
         <p>{p.tagline}</p>

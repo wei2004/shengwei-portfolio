@@ -497,24 +497,24 @@ const hsinchu: RecordRow = { category: "商業競賽", date: "2026.11.20", event
 
 /** The resume list: one row per event. The home page uses `homeRecord`. */
 export const competitionRecord: RecordRow[] = [
-  { date: "2026.11.21", event: "和泰 AI 黑客松", host: "和泰集團・yoxi 命題", work: "yoxi 陪出門", result: "季軍", role: "原型迭代、Demo、決賽簡報", href: "/projects/hotai" },
+  { date: "2026.11.21", event: "和泰 AI 黑客松", host: "和泰集團・yoxi 命題", work: "yoxi 陪出門", result: "季軍", scale: "554 件提案・決賽 15 組", role: "原型迭代、Demo、決賽簡報", href: "/projects/hotai" },
   hsinchu,
   { date: "2026.10.20", event: "AI 座艙感知與視覺化 Hackathon", host: "資策會數轉院 × 友達智慧移動 × 4SA 聯盟", work: "共創世界窗／警示找眼睛", result: "創意組金獎／實作組潛力新星獎", role: "Demo 製作與實測、簡報、影片、評審 QA", href: "/projects/cockpit" },
   { date: "2026.10.16", event: "LINE AI 創新創業競賽", work: "TapAble", result: "第三名", role: "簡報優化、影片拍攝、評審 QA", href: "/projects/tapable-line" },
   { date: "2026.09.04–06", event: "BUILDMODE 2026 Hackathon", host: "台灣未來祭 OnboardFUTUREMODE", work: "TapAble", result: "第二名", scale: "160 隊", role: "產品測試、修改建議、Demo 準備", href: "/projects/tapable-buildmode" },
-  { date: "2026.05.29", event: "AI 賦能∞品牌煉金術競賽", host: "檜山坊企業命題", work: "消波檜｜檜山坊", result: "第一名", role: "門市觀察、經濟模型整理、簡報優化、評審 QA", href: "/projects/brand" },
-  { date: "2026.01.25", event: "Cardif InsurHack 法國巴黎人壽校園黑客松", work: "保包巴士", result: "銀獎", scale: "全台 50 校、450+ 位學生", role: "經濟模型報告、評審 QA、講稿與簡報", href: "/projects/cardif" },
+  { date: "2026.05.29", event: "AI 賦能∞品牌煉金術競賽", host: "檜山坊企業命題", work: "消波檜｜檜山坊", result: "第一名", scale: "13 校 70 組・決賽 12 組", role: "門市觀察、經濟模型整理、簡報優化、評審 QA", href: "/projects/brand" },
+  { date: "2026.01.25", event: "Cardif InsurHack 法國巴黎人壽校園黑客松", work: "保包巴士", result: "銀獎", scale: "全台 50 校、450+ 位學生・決賽 8 組", role: "經濟模型報告、評審 QA、講稿與簡報", href: "/projects/cardif" },
 ];
 
 /** The home page record table, the full list of awards: one row per award, so an event with two works takes two rows. */
 export const homeRecord: RecordRow[] = [
-  { id: "hotai", date: "2026.11.21", event: "和泰 AI 黑客松", host: "和泰集團・yoxi 命題", work: "yoxi 陪出門", result: "季軍", role: "原型迭代、Demo、決賽簡報", href: "/projects/hotai" },
+  { id: "hotai", date: "2026.11.21", event: "和泰 AI 黑客松", host: "和泰集團・yoxi 命題", work: "yoxi 陪出門", result: "季軍", scale: "554 件提案・決賽 15 組", role: "原型迭代、Demo、決賽簡報", href: "/projects/hotai" },
   { id: "cockpit", date: "2026.10.20", event: "AI 座艙感知與視覺化 Hackathon", host: "資策會數轉院 × 友達智慧移動 × 4SA 聯盟", work: "共創世界窗", result: "創意組金獎", role: "離線 Demo 製作、簡報支援、評審 QA", href: "/projects/cockpit" },
   { id: "cockpit", date: "2026.10.20", event: "AI 座艙感知與視覺化 Hackathon", host: "資策會數轉院 × 友達智慧移動 × 4SA 聯盟", work: "警示找眼睛", result: "實作組潛力新星獎", role: "Demo 實測與修改、修改決賽簡報、拍攝作品影片、評審 QA", href: "/projects/cockpit#companion", cover: byId("cockpit").companion!.gallery[0] },
   { id: "tapable-line", date: "2026.10.16", event: "LINE AI 創新創業競賽", work: "TapAble", result: "第三名", role: "簡報優化、影片拍攝、評審 QA", href: "/projects/tapable-line" },
   { id: "tapable-buildmode", date: "2026.09.04–06", event: "BUILDMODE 2026 Hackathon", host: "台灣未來祭 OnboardFUTUREMODE", work: "TapAble", result: "第二名", scale: "160 隊", role: "產品測試、修改建議、Demo 準備", href: "/projects/tapable-buildmode" },
-  { id: "brand", date: "2026.05.29", event: "AI 賦能∞品牌煉金術競賽", host: "檜山坊企業命題", work: "消波檜｜檜山坊", result: "第一名", role: "門市觀察、經濟模型整理、簡報優化、評審 QA", href: "/projects/brand" },
-  { id: "cardif", date: "2026.01.25", event: "Cardif InsurHack 法國巴黎人壽校園黑客松", work: "保包巴士", result: "銀獎", scale: "全台 50 校、450+ 位學生", role: "經濟模型報告、評審 QA、講稿與簡報", href: "/projects/cardif" },
+  { id: "brand", date: "2026.05.29", event: "AI 賦能∞品牌煉金術競賽", host: "檜山坊企業命題", work: "消波檜｜檜山坊", result: "第一名", scale: "13 校 70 組・決賽 12 組", role: "門市觀察、經濟模型整理、簡報優化、評審 QA", href: "/projects/brand" },
+  { id: "cardif", date: "2026.01.25", event: "Cardif InsurHack 法國巴黎人壽校園黑客松", work: "保包巴士", result: "銀獎", scale: "全台 50 校、450+ 位學生・決賽 8 組", role: "經濟模型報告、評審 QA、講稿與簡報", href: "/projects/cardif" },
 ];
 
 const accountingStart = Date.UTC(2024, 6);
